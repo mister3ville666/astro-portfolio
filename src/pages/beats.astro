@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TrackCard from '../components/TrackCard.astro';
+---
+<BaseLayout title="Babypauul - Beats & Songs" description="Explore a collection of Babypauul's production beats and collaborative tracks.">
+    <section id="beats-songs-page">
+        <h2>🎤 Beats & Songs</h2>
+        <div class="music-grid"> {/* Keep music-grid if you want different layout for beats */}
+            <TrackCard
+                title="Rain"
+                spotifyEmbedUrl="https://open.spotify.com/embed/track/7AGuY6zObpNBMBNU8"
+                artist="Babypauul"
+            />
+            <TrackCard
+                title="Oh No"
+                spotifyEmbedUrl="https://open.spotify.com/embed/track/2fScpytJycxBNZPkHKT7qc"
+                artist="KID4E, Babypauul"
+            />
+            {/* Add more TrackCard components for all your beats here */}
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    /* Any specific styles for the beats page that are not global or in TrackCard */
+    /* You might want to adjust .music-grid styles here if they are different from .portfolio-grid */
+    .music-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+</style>

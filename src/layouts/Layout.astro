@@ -1,22 +1,101 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+// This is the Astro "frontmatter". It can be left empty for now.
+import Header from '../components/Header.astro'; // Will create this below
+import Footer from '../components/Footer.astro'; // Will create this below
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={description}>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,900|Barlow:400,700|Anton&display=swap" rel="stylesheet">
+    <style is:global>
+        :root {
+            --bg: #111217;
+            --card: #191a22;
+            --accent-blue: rgb(255, 0, 0); /* Keeping your original red color */
+            --accent-red: #FF0033;
+            --accent-violet: rgb(0, 17, 255); /* Keeping your original blue color */
+            --text: #F8F9FB;
+            --subtext: #A9A9B8;
+            --font-header: 'Montserrat', 'Anton', Arial, sans-serif;
+            --font-body: 'Barlow', Arial, sans-serif;
+            --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a { color: var(--accent-blue); text-decoration: none; transition: color var(--transition); }
+        a:hover { color: var(--accent-violet); }
+
+        /* General Section Styling */
+        section {
+            max-width: 1200px;
+            margin: 0 auto 4rem auto;
+            padding: 2.5rem 1.2rem 0 1.2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity var(--transition), transform var(--transition);
+        }
+        section.visible { opacity: 1; transform: none; }
+        section h2 {
+            font-family: var(--font-header);
+            font-size: 2rem;
+            color: var(--accent-violet);
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .about-grid { flex-direction: column; gap: 1.8rem; }
+            .services-grid, .portfolio-grid, .music-grid, .testimonial-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            header.hero { min-height: 60vh; }
+            .hero-title { font-size: 1.5rem; }
+            section h2 { font-size: 1.3rem; }
+            .services-grid, .portfolio-grid, .music-grid, .testimonial-grid { grid-template-columns: 1fr; }
+            .about-img img, .track-art, .music-art { width: 120px; height: 120px; }
+            .contact-form { padding: 1.3rem 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <Header />
+    <main>
+        <slot /> {/* This is where the content of each specific page will be inserted */}
+    </main>
+    <Footer />
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(sec => observer.observe(sec));
+        });
+    </script>
+</body>
+</html>

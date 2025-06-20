@@ -1,0 +1,38 @@
+---
+// src/components/SocialLinks.astro
+---
+<div class="social-links" aria-label="Social media links">
+    <a href="https://instagram.com/babypauul" class="social-link" target="_blank" title="Instagram"><span aria-hidden="true">📸</span></a>
+    <a href="https://tiktok.com/babypauul" class="social-link" target="_blank" title="TikTok"><span aria-hidden="true">🎵</span></a>
+    <a href="https://open.spotify.com/" class="social-link" target="_blank" title="Spotify profile"><span aria-hidden="true">🟢</span></a>
+    <a href="https://youtube.com/" class="social-link" target="_blank" title="YouTube channel"><span aria-hidden="true">▶️</span></a>
+</div>
+
+<style>
+  /* Social links specific styles */
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.6rem;
+    margin: 2rem 0 0 0;
+    flex-wrap: wrap;
+  }
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #222;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: var(--accent-blue);
+    font-size: 1.6rem;
+    transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+    box-shadow: 0 2px 8px #00ffff22;
+  }
+  .social-link:hover {
+    color: var(--accent-red);
+    background: #18191f;
+    box-shadow: 0 4px 16px #FF003344;
+  }
+</style>

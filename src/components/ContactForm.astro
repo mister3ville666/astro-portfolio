@@ -1,0 +1,68 @@
+---
+// src/components/ContactForm.astro
+---
+<form class="contact-form" autocomplete="off" action="mailto:your@email.com" method="POST" enctype="text/plain">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="Name" required placeholder="Your Name" />
+    <label for="email">Email</label>
+    <input type="email" id="email" name="Email" required placeholder="your@email.com" />
+    <label for="message">Message</label>
+    <textarea id="message" name="Message" rows="4" required placeholder="How can I help you?"></textarea>
+    <button type="submit" class="contact-btn">Send Request</button>
+</form>
+
+<style>
+  /* Contact form specific styles */
+  .contact-form {
+    max-width: 400px;
+    margin: 2rem auto 0 auto;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 2rem 1.3rem 1.5rem 1.3rem;
+    box-shadow: 0 2px 12px #00ffff22;
+    display: flex;
+    flex-direction: column;
+    gap: 1.01rem;
+  }
+  .contact-form label {
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: var(--accent-blue);
+    font-size: 1.08rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    border: none;
+    border-radius: 9px;
+    padding: 0.8rem 1rem;
+    background: #23242c;
+    color: var(--text);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    resize: vertical;
+    font-family: var(--font-body);
+    transition: background var(--transition), border var(--transition);
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    background: #28294a;
+    outline: 2px solid var(--accent-blue);
+  }
+  .contact-btn {
+    align-self: flex-end;
+    padding: 0.7rem 2.3rem;
+    border: none;
+    border-radius: 24px;
+    background: linear-gradient(90deg, var(--accent-violet), var(--accent-blue));
+    color: #18191f;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+  }
+  .contact-btn:hover {
+    background: linear-gradient(90deg, var(--accent-red), var(--accent-blue));
+    color: var(--text);
+  }
+</style>

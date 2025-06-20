@@ -1,0 +1,59 @@
+---
+// src/components/AboutSection.astro
+---
+<section id="about">
+    <div class="about-grid">
+        <div class="about-text">
+            <b>About Babypauul</b>
+            <p>
+                Babypauul is a multi-disciplinary artist blending elite-level sound engineering with raw lyrical artistry. With 5+ years of experience in modern trap and hip-hop, he delivers precise mixes, heavy-hitting beats, and authentic performances.
+            </p>
+            <p>
+                Passionately crafting soundscapes that capture both the energy and emotion of every track. From the studio to the stage, his work is defined by dedication, innovation, and authenticity.
+            </p>
+        </div>
+        <div class="about-img">
+            <img src="https://i.postimg.cc/yd3WzXWK/472054628-1216365503181299-5788342793141855193-n.jpg" alt="Babypauul Portrait" />
+        </div>
+    </div>
+</section>
+
+<style>
+  /* About section specific styles */
+  .about-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about-text {
+    flex: 1 1 350px;
+    min-width: 270px;
+  }
+  .about-text p {
+    font-size: 1.13rem;
+    margin-bottom: 1rem;
+  }
+  .about-text b {
+    display: block;
+    font-size: 1.18rem;
+    color: var(--accent-blue);
+    margin-bottom: 0.7rem;
+    font-weight: 700;
+  }
+  .about-img {
+    flex: 1 1 270px;
+    min-width: 200px;
+    text-align: center;
+  }
+  .about-img img {
+    width: 220px;
+    max-width: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--accent-violet);
+    box-shadow: 0 4px 24px #B026FF66;
+    background: #222;
+    object-fit: cover;
+  }
+</style>

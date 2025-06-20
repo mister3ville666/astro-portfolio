@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+---
+<BaseLayout title="Babypauul - Services" description="Explore all professional music production and engineering services offered by Babypauul.">
+    <section id="services-full">
+        <h2>🛠 Full Services List</h2>
+        <div class="services-grid">
+            <ServiceCard icon="🎹" title="Beat Production" description="Original trap & hip-hop instrumentals tailored to your vibe." />
+            <ServiceCard icon="🎛️" title="Mixing" description="Stem, vocal, and instrumental mixes with clarity and punch." />
+            <ServiceCard icon="📈" title="Mastering" description="Streaming-ready, loudness-optimized masters for all platforms." />
+            <ServiceCard icon="🎤" title="Songwriting & Recording" description="Hooks, verses, & vocal recording sessions for your next hit." />
+            {/* Add more service cards if you have additional services */}
+        </div>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="/contact" class="service-btn">Request a Quote</a>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    /* Any specific styles for the full services page that are not global or in ServiceCard */
+</style>

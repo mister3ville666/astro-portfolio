@@ -1,0 +1,52 @@
+---
+// src/components/Footer.astro
+---
+<footer>
+    <span class="footer-logo">Babypauul</span>
+    <nav class="footer-nav">
+        <a href="/">Home</a> {/* Link to the new home page */}
+        <a href="/about">About</a> {/* Link to new about page */}
+        <a href="/services">Services</a> {/* Link to new services page */}
+        <a href="/songs">My Songs</a> {/* Link to new songs page */}
+        <a href="/beats">Beats & Songs</a> {/* Link to new beats page */}
+        <a href="/contact">Contact</a> {/* Link to new contact page */}
+    </nav>
+    <div>
+        © Babypauul 2025. All rights reserved.
+    </div>
+</footer>
+
+<style>
+    /* Footer specific styles */
+    footer {
+        background: var(--card); /* Changed from #191a22 to var(--card) for consistency */
+        color: var(--subtext);
+        text-align: center;
+        padding: 1.5rem 0 0.8rem 0;
+        margin-top: auto;
+        font-size: 0.97rem;
+    }
+    .footer-nav {
+        margin-bottom: 0.7rem;
+        display: flex;
+        justify-content: center;
+        gap: 1.9rem;
+        flex-wrap: wrap;
+    }
+    .footer-nav a {
+        color: var(--subtext); /* Default footer link color */
+        transition: color var(--transition);
+    }
+    .footer-nav a:hover {
+        color: var(--accent-blue); /* Hover color for footer links */
+    }
+    .footer-logo {
+        font-family: var(--font-header);
+        font-size: 1.35rem;
+        color: var(--accent-blue);
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 0.3rem;
+        display: block;
+    }
+</style>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TrackCard from '../components/TrackCard.astro';
+---
+<BaseLayout title="Babypauul - My Songs" description="Listen to original tracks and collaborations from Babypauul.">
+    <section id="my-songs-page">
+        <h2>🎧 My Songs</h2>
+        <div class="portfolio-grid">
+            <TrackCard
+                title="Homie"
+                spotifyEmbedUrl="https://open.spotify.com/embed/track/7lIqNVeDvceHKDdO7T6JuL5iq"
+                artist="Babypauul"
+            />
+            <TrackCard
+                title="Thinking About You"
+                spotifyEmbedUrl="https://open.spotify.com/embed/track/41uLgGCJ5Vp54xO0IU1l"
+                artist="Babypauul"
+            />
+            {/* Add more TrackCard components for all your songs here */}
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    /* Any specific styles for the songs page that are not global or in TrackCard */
+</style>
