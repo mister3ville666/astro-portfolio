@@ -1,6 +1,11 @@
 ---
+// src/pages/songs.astro
 import BaseLayout from '../layouts/baselayout.astro';
 import TrackCard from '../components/trackcard.astro';
+
+// Important: Use the EXACT Spotify embed URLs from your screenshots/Spotify embed code
+const spotifyEmbedUrlHomie = "https://open.spotify.com/embed/track/7IiqNeOvceHKDdO7T6JuL5iq?utm_source=generator"; // From your Homie screenshot
+const spotifyEmbedUrlThinkingAboutYou = "https://open.spotify.com/embed/track/4IuLqGCJ5Vp54XO0iU11I?utm_source=generator"; // From Thinking About You screenshot
 ---
 <BaseLayout title="Babypauul - My Songs" description="Listen to original tracks and collaborations from Babypauul.">
     <section id="my-songs-page">
@@ -8,19 +13,15 @@ import TrackCard from '../components/trackcard.astro';
         <div class="portfolio-grid">
             <TrackCard
                 title="Homie"
-                spotifyEmbedUrl="https://open.spotify.com/embed/track/7IbqNeOivzHYdXD7J6uHSq?utm_source=generator"
+                spotifyEmbedUrl={spotifyEmbedUrlHomie}
                 artist="Babypauul"
             />
             <TrackCard
                 title="Thinking About You"
-                spotifyEmbedUrl="https://open.spotify.com/embed/track/43uLpGO5OagtSVFSAoOIUl?utm_source=generator"
+                spotifyEmbedUrl={spotifyEmbedUrlThinkingAboutYou}
                 artist="Babypauul"
             />
-            {/* Add more TrackCard components for all your songs here */}
+            {/* Add more TrackCard components for all your songs here with their correct URLs */}
         </div>
     </section>
 </BaseLayout>
-
-<style>
-    /* Any specific styles for the songs page that are not global or in TrackCard */
-</style>

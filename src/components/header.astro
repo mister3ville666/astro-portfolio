@@ -1,28 +1,45 @@
 ---
 // src/components/header.astro
+// Defines optional props for the hero section
+interface Props {
+    title?: string; // Optional custom title
+    subtitle?: string; // Optional custom subtitle
+    showCtaButtons?: boolean; // Controls visibility of CTA buttons
+    backgroundImage?: string; // Optional custom background image URL
+}
+
+// Destructures props, providing default values
+const {
+    title = "Babypauul.",
+    subtitle = "Crafting next-level sound with clarity, energy, and emotion.",
+    showCtaButtons = true,
+    backgroundImage = 'https://i.postimg.cc/RVHhYTyL/Killstreetstudios.png' // Default image from your original hero
+} = Astro.props;
 ---
-<header class="hero" id="home">
+<header class="hero" style={`background-image: url('${backgroundImage}')`}>
     <div class="hero-content">
-        <h1 class="hero-title">Babypauul.</h1>
-        <p class="hero-sub">Crafting next-level sound with clarity, energy, and emotion.</p>
-        <div class="cta-buttons">
-            <a href="/songs" class="cta-btn">Listen</a> {/* Link to new songs page */}
-            <a href="/contact" class="cta-btn">Book Now</a> {/* Link to new contact page */}
-            <a href="/beats" class="cta-btn">Beats</a> {/* Link to new beats page */}
-        </div>
+        <h1 class="hero-title">{title}</h1>
+        <p class="hero-sub">{subtitle}</p>
+        {showCtaButtons && (
+            <div class="cta-buttons">
+                <a href="/songs" class="cta-btn">Listen</a>
+                <a href="/contact" class="cta-btn">Book Now</a>
+                <a href="/beats" class="cta-btn">Beats</a>
+            </div>
+        )}
     </div>
 </header>
 
 <style>
-    /* Hero section specific styles */
+    /* Specific styles for the hero section */
     header.hero {
         position: relative;
         width: 100%;
-        min-height: 80vh;
+        min-height: 80vh; /* Main height of the hero section */
         display: flex;
         align-items: center;
         justify-content: center;
-        background: url('https://i.postimg.cc/RVHhYTyL/Killstreetstudios.png') center/cover no-repeat;
+        background: center/cover no-repeat; /* Background image provided by prop */
     }
     header.hero::before {
         content: '';
@@ -77,5 +94,10 @@
         background: linear-gradient(90deg, var(--accent-red), var(--accent-blue));
         transform: scale(1.07);
         color: var(--text);
+    }
+    /* Responsive adjustments for hero */
+    @media (max-width: 600px) {
+        header.hero { min-height: 60vh; }
+        .hero-title { font-size: 1.5rem; }
     }
 </style>

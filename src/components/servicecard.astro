@@ -1,21 +1,33 @@
 ---
-// src/components/servicecard.astro
+// src/components/service-card.astro
 interface Props {
   icon: string;
   title: string;
   description: string;
+  link?: string; // Optional prop: if provided, the card becomes a link
 }
 
-const { icon, title, description } = Astro.props;
+const { icon, title, description, link } = Astro.props;
 ---
-<div class="service-card">
-  <div class="icon">{icon}</div>
-  <div class="service-title">{title}</div>
-  <div class="service-desc">{description}</div>
-</div>
+{link ? (
+  <a href={link} class="service-card-link"> {/* The entire card is now a clickable link */}
+    <div class="service-card">
+      <div class="icon">{icon}</div>
+      <div class="service-title">{title}</div>
+      <div class="service-desc">{description}</div>
+    </div>
+  </a>
+) : (
+  <div class="service-card"> {/* Fallback if no link is provided, it's just a div */}
+    <div class="icon">{icon}</div>
+    <div class="service-title">{title}</div>
+    <div class="service-desc">{description}</div>
+  </div>
+)}
+
 
 <style>
-  /* Service card specific styles */
+  /* Existing service card styles */
   .service-card {
     background: var(--card);
     border-radius: 18px;
@@ -24,24 +36,41 @@ const { icon, title, description } = Astro.props;
     text-align: center;
     transition: box-shadow var(--transition), transform var(--transition);
     border: 1.5px solid transparent;
+    height: 100%; /* Ensures cards are the same height in a grid */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-  .service-card:hover {
+
+  /* Styles for when the card is a link */
+  .service-card-link {
+    text-decoration: none; /* Remove default underline from <a> */
+    color: inherit; /* Inherit text color from parent */
+    display: block; /* Make the link fill its container in the grid */
+    height: 100%; /* Ensure the clickable area matches the card's height */
+  }
+
+  .service-card-link:hover .service-card { /* Apply hover effect to the actual card */
     box-shadow: 0 6px 24px #FF003344;
     border: 1.5px solid var(--accent-red);
     transform: translateY(-7px) scale(1.03);
   }
+
   .service-card .icon {
     font-size: 2.4rem;
     margin-bottom: 1rem;
     color: var(--accent-blue);
     transition: color var(--transition);
   }
-  .service-card:hover .icon { color: var(--accent-red); }
+  .service-card-link:hover .service-card .icon { color: var(--accent-red); } /* Icon changes color on hover */
+
   .service-title {
     font-family: var(--font-header);
     font-weight: bold;
     font-size: 1.18rem;
     margin-bottom: 0.7rem;
+    color: var(--text); /* Ensure title color is consistent */
   }
   .service-desc {
     color: var(--subtext);

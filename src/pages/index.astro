@@ -1,50 +1,59 @@
 ---
+// src/pages/index.astro
 import BaseLayout from '../layouts/baselayout.astro';
-import AboutSection from '../components/aboutsection.astro';
-import ServiceCard from '../components/servicecard.astro';
-import TestimonialCard from '../components/testimonialcard.astro';
-import ContactForm from '../components/contactform.astro';
-import SocialLinks from '../components/sociallinks.astro';
+import Header from '../components/header.astro'; // Import Header for the specific homepage hero
+import TrackCard from '../components/trackcard.astro'; // For featured tracks
+// No need to import aboutsection, service-card, testimonialcard, contactform, sociallinks directly here
+// unless you use smaller snippets of them
+
+// Important: Use the EXACT Spotify embed URLs from your screenshots/Spotify embed code
+const spotifyEmbedUrlHomie = "https://open.spotify.com/embed/track/7IiqNeOvceHKDdO7T6JuL5iq?utm_source=generator"; // From your Homie screenshot
+const spotifyEmbedUrlThinkingAboutYou = "https://open.spotify.com/embed/track/4IuLqGCJ5Vp54XO0iU11I?utm_source=generator"; // From Thinking About You screenshot
 ---
-<BaseLayout title="Babypauul - Home" description="Babypauul: Elite sound engineering & raw artistry. Trap & hip-hop producer.">
-    {/* The Header component is already in BaseLayout, so we just add the hero content here if it's dynamic per page.
-        Since the Header component already has the Hero styling, we don't need a <section class="hero"> here again.
-        The Header component itself acts as the hero for the home page.
-    */}
+<BaseLayout
+    title="Babypauul - Home"
+    description="Babypauul: Official website for producer, engineer, and artist. Discover music, services, and contact info."
+>
+    {/* The main Hero Section for the landing page */}
+    <Header
+        title="Babypauul."
+        subtitle="Crafting next-level sound with clarity, energy, and emotion."
+        showCtaButtons={true}
+        backgroundImage="https://i.postimg.cc/RVHhYTyL/Killstreetstudios.png" {/* Your background image */}
+    />
 
-    <AboutSection />
-
-    <section id="services-preview">
-        <h2>🛠 Our Services</h2>
-        <div class="services-grid">
-            <ServiceCard icon="🎹" title="Beat Production" description="Original trap & hip-hop instrumentals tailored to your vibe." />
-            <ServiceCard icon="🎛️" title="Mixing" description="Stem, vocal, and instrumental mixes with clarity and punch." />
-            <ServiceCard icon="📈" title="Mastering" description="Streaming-ready, loudness-optimized masters for all platforms." />
-            <ServiceCard icon="🎤" title="Songwriting & Recording" description="Hooks, verses, & vocal recording sessions for your next hit." />
+    {/* Featured Work section on the homepage */}
+    <section id="featured-work">
+        <h2>✨ Featured Work</h2>
+        <p style="text-align: center; margin-bottom: 2rem; color: var(--subtext);">Check out my latest and greatest productions and collaborations.</p>
+        <div class="portfolio-grid">
+            <TrackCard
+                title="Homie"
+                spotifyEmbedUrl={spotifyEmbedUrlHomie}
+                artist="Babypauul"
+            />
+            <TrackCard
+                title="Thinking About You"
+                spotifyEmbedUrl={spotifyEmbedUrlThinkingAboutYou}
+                artist="Babypauul"
+            />
+            {/* You can add more featured TrackCards here if you want */}
         </div>
         <div style="text-align:center; margin-top:2rem;">
-            <a href="/services" class="service-btn">View All Services</a>
+            <a href="/songs" class="service-btn">View All Songs</a>
+            <a href="/beats" class="service-btn" style="margin-left: 1rem;">Explore All Beats</a>
         </div>
     </section>
 
-    <section id="testimonials-preview" class="testimonials">
-        <h2>💬 Testimonials / Collaborations</h2>
-        <div class="testimonial-grid">
-            <TestimonialCard quote="Babypauul transformed my vocals into something radio-ready. Insane attention to detail!" author="Client A" />
-            <TestimonialCard quote="His beats always slap, and his mixing is next-level. Highly recommend for any artist." author="Artist B" />
-            <TestimonialCard quote="From songwriting to final master, Babypauul delivers nothing but quality." author="Label Rep" />
+    {/* Short "Why Choose Me" section or a compelling call to action */}
+    <section id="why-choose-me">
+        <h2 style="text-align: center;">Why Babypauul?</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem auto; color: var(--subtext);">
+            With a passion for pushing sonic boundaries, I bring precision, power, and raw emotion to every project. Your sound, elevated.
+        </p>
+        <div style="text-align:center;">
+            <a href="/about" class="cta-btn">Learn More About My Journey</a>
         </div>
-    </section>
-
-    <section id="contact-preview">
-        <h2>📩 Get in Touch</h2>
-        <ContactForm />
-        <SocialLinks />
     </section>
 
 </BaseLayout>
-
-<style>
-    /* Specific styling for sections on the homepage if needed, that aren't global or in components */
-    /* Example: If services-grid on homepage needs slightly different margin than the full services page */
-</style>

@@ -1,0 +1,103 @@
+---
+// src/components/top-nav.astro
+---
+<nav class="top-navigation">
+    <div class="site-logo">
+        <a href="/">Babypauul.</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/songs">My Songs</a></li>
+        <li><a href="/beats">Beats & Songs</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="social-links-nav">
+        {/* Key social links for quick access, using emoji as visual icons */}
+        <a href="https://instagram.com/babypauul" target="_blank" title="Babypauul on Instagram">📸</a>
+        <a href="https://tiktok.com/babypauul" target="_blank" title="Babypauul on TikTok">🎵</a>
+    </div>
+</nav>
+
+<style>
+    .top-navigation {
+        background-color: var(--card); /* Uses your card background color */
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        position: sticky; /* Makes it stick to the top when scrolling */
+        top: 0;
+        z-index: 1000; /* Ensures it's above other content */
+        border-bottom: 1px solid var(--accent-violet);
+    }
+
+    .site-logo a {
+        font-family: var(--font-header);
+        font-size: 1.5rem;
+        color: var(--accent-blue);
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: color var(--transition);
+    }
+    .site-logo a:hover {
+        color: var(--accent-red);
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: var(--text);
+        font-weight: 600;
+        font-size: 1.05rem;
+        text-transform: uppercase;
+        transition: color var(--transition), transform var(--transition);
+    }
+
+    .nav-links a:hover {
+        color: var(--accent-violet);
+        transform: translateY(-2px);
+    }
+
+    .social-links-nav a {
+        font-size: 1.4rem;
+        color: var(--subtext);
+        margin-left: 1rem;
+        transition: color var(--transition);
+    }
+
+    .social-links-nav a:hover {
+        color: var(--accent-blue);
+    }
+
+    /* Responsive adjustments for top navigation */
+    @media (max-width: 900px) {
+        .top-navigation {
+            flex-direction: column;
+            padding: 1rem;
+        }
+        .nav-links {
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .social-links-nav {
+            margin-top: 1rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .nav-links {
+            gap: 0.8rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>

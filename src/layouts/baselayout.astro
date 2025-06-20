@@ -1,13 +1,16 @@
 ---
-// This is the Astro "frontmatter". It can be left empty for now.
-import Header from '../components/header.astro'; // Will create this below
-import Footer from '../components/footer.astro'; // Will create this below
+// src/layouts/baselayout.astro
+// Imports for components used directly within the layout
+import TopNav from '../components/top-nav.astro';
+import Footer from '../components/footer.astro';
 
+// Define props for the layout (title and description for HTML <head>)
 interface Props {
     title: string;
     description: string;
 }
 
+// Destructure the props
 const { title, description } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -19,12 +22,13 @@ const { title, description } = Astro.props;
     <meta name="description" content={description}>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700,900|Barlow:400,700|Anton&display=swap" rel="stylesheet">
     <style is:global>
+        /* Global CSS variables and general styling for the entire website */
         :root {
             --bg: #111217;
             --card: #191a22;
-            --accent-blue: rgb(255, 0, 0); /* Keeping your original red color */
+            --accent-blue: rgb(255, 0, 0); /* Your specific red color */
             --accent-red: #FF0033;
-            --accent-violet: rgb(0, 17, 255); /* Keeping your original blue color */
+            --accent-violet: rgb(0, 17, 255); /* Your specific blue color */
             --text: #F8F9FB;
             --subtext: #A9A9B8;
             --font-header: 'Montserrat', 'Anton', Arial, sans-serif;
@@ -45,7 +49,7 @@ const { title, description } = Astro.props;
         a { color: var(--accent-blue); text-decoration: none; transition: color var(--transition); }
         a:hover { color: var(--accent-violet); }
 
-        /* General Section Styling */
+        /* General Section Styling that applies to all sections on all pages */
         section {
             max-width: 1200px;
             margin: 0 auto 4rem auto;
@@ -63,13 +67,13 @@ const { title, description } = Astro.props;
             letter-spacing: 1px;
         }
 
-        /* Responsive Breakpoints */
+        /* Global Responsive Breakpoints for general elements */
         @media (max-width: 900px) {
             .about-grid { flex-direction: column; gap: 1.8rem; }
             .services-grid, .portfolio-grid, .music-grid, .testimonial-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 600px) {
-            header.hero { min-height: 60vh; }
+            /* Note: header.hero min-height will now be handled in header.astro */
             .hero-title { font-size: 1.5rem; }
             section h2 { font-size: 1.3rem; }
             .services-grid, .portfolio-grid, .music-grid, .testimonial-grid { grid-template-columns: 1fr; }
@@ -79,12 +83,13 @@ const { title, description } = Astro.props;
     </style>
 </head>
 <body>
-    <Header />
+    <TopNav /> {/* Renders the universal top navigation bar */}
     <main>
-        <slot /> {/* This is where the content of each specific page will be inserted */}
+        <slot /> {/* This is where the unique content of each page will be injected */}
     </main>
-    <Footer />
+    <Footer /> {/* Renders the global Footer component */}
     <script>
+        // JavaScript for scroll animation, applied to all sections on any page
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('section');
             const observer = new IntersectionObserver((entries) => {

@@ -1,29 +1,33 @@
 ---
+// src/pages/beats.astro
 import BaseLayout from '../layouts/baselayout.astro';
 import TrackCard from '../components/trackcard.astro';
+
+// Important: Use the EXACT Spotify embed URLs from your screenshots/Spotify embed code
+const spotifyEmbedUrlRain = "https://open.spotify.com/embed/track/3tgbo7ajgLyIE8qbN3dNU8?utm_source=generator"; // From Rain screenshot
+const spotifyEmbedUrlOhNo = "https://open.spotify.com/embed/track/2fbcy6ylvoBNZFUtXJQ7qc?utm_source=generator"; // From Oh No screenshot
 ---
 <BaseLayout title="Babypauul - Beats & Songs" description="Explore a collection of Babypauul's production beats and collaborative tracks.">
     <section id="beats-songs-page">
         <h2>🎤 Beats & Songs</h2>
-        <div class="music-grid"> {/* Keep music-grid if you want different layout for beats */}
+        <div class="music-grid"> {/* Use music-grid if you want a different layout than portfolio-grid for beats */}
             <TrackCard
                 title="Rain"
-                spotifyEmbedUrl="https://open.spotify.com/embed/track/3tgbo7ajgLyIE8qbN3dNU8?utm_source=generator"
+                spotifyEmbedUrl={spotifyEmbedUrlRain}
                 artist="Babypauul"
             />
             <TrackCard
                 title="Oh No"
-                spotifyEmbedUrl="https://open.spotify.com/embed/track/29zqv6ylvoBNZFUtIlQ7gc?utm_source=generator"
+                spotifyEmbedUrl={spotifyEmbedUrlOhNo}
                 artist="KID4E, Babypauul"
             />
-            {/* Add more TrackCard components for all your beats here */}
+            {/* Add more TrackCard components for all your beats here with their correct URLs */}
         </div>
     </section>
 </BaseLayout>
 
 <style>
-    /* Any specific styles for the beats page that are not global or in TrackCard */
-    /* You might want to adjust .music-grid styles here if they are different from .portfolio-grid */
+    /* Specific styles for the beats page if different from portfolio-grid */
     .music-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
