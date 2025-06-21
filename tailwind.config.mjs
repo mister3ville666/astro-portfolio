@@ -4,15 +4,14 @@ export default {
 	theme: {
 		extend: {
 			// This is your new, custom color palette
-			colors: {
-				'background': '#000000',      // Pure Black for the page background
-				'surface': '#210000',       // Very Dark Red for card backgrounds
-				'text_primary': '#ff0000',    // Red for main text, as requested
-				'text_secondary': '#690000', // Dark Red for subtext
-				'accent': '#ff0000',         // Red as the primary accent color
-				'highlight': '#ffffff',      // White for high-contrast highlights
-			},
-			
+    colors: {
+    'background': '#111111',      // A deep, dark charcoal instead of pure black
+    'surface': '#1a1a1a',       // A slightly lighter surface for cards
+    'accent': '#E50914',         // A strong, iconic crimson red (like Netflix)
+    'text_primary': '#F5F5F1',    // A clean, off-white for main text
+    'text_secondary': '#A3A3A3', // A soft gray for subtext
+    'highlight': '#FFFFFF',      // Pure white for important highlights
+},
 			// This registers your fonts. Change 'Syne' and 'Inter'
 			// if you chose different ones from Google Fonts.
 			fontFamily: {
