@@ -1,8 +1,5 @@
 ---
-// src/components/breadcrumb.astro
-
-// This defines the "props" our component will accept.
-// It expects an array of link objects.
+// src/components/breadcrumb.astro - CORRECTED VERSION
 interface Link {
     href: string;
     label: string;
@@ -10,15 +7,14 @@ interface Link {
 interface Props {
     links: Link[];
 }
-
 const { links = [] } = Astro.props;
 ---
 
 <nav aria-label="Breadcrumb">
-  <ol class="flex items-center gap-1 text-sm text-text_secondary">
+  <ol class="breadcrumb-list">
     <li>
-      <a href="/" class="block transition hover:text-highlight" aria-label="Home">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <a href="/" aria-label="Home">
+        <svg style="width: 1em; height: 1em;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
       </a>
@@ -26,13 +22,13 @@ const { links = [] } = Astro.props;
 
     {links.map(link => (
       <>
-        <li class="rtl:rotate-180">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+        <li class="separator">
+          <svg style="width: 1em; height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
           </svg>
         </li>
         <li>
-          <a href={link.href} class="block transition hover:text-highlight">
+          <a href={link.href}>
             {link.label}
           </a>
         </li>
@@ -40,3 +36,26 @@ const { links = [] } = Astro.props;
     ))}
   </ol>
 </nav>
+
+<style>
+  /* These styles replace the broken Tailwind classes */
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem; /* 4px */
+    font-size: 0.875rem; /* 14px */
+    color: var(--text-secondary, #a9a9b8); /* Use subtext color from your layout */
+  }
+  .breadcrumb-list a {
+    display: block;
+    transition: color 0.3s ease;
+    color: var(--text-secondary, #a9a9b8);
+  }
+  .breadcrumb-list a:hover {
+    color: var(--text-primary, #ffffff);
+  }
+  .separator {
+    /* This class is for the '>' arrow icon */
+    transform: rotate(0); /* For standard LTR text direction */
+  }
+</style>
