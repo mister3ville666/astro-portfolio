@@ -2,12 +2,27 @@
 // This is the master template for all pages on the site.
 import TopNav from '../components/top-nav.astro';
 import Footer from '../components/footer.astro';
+import Breadcrumb from '../components/breadcrumb.astro'; // 1. Import the Breadcrumb component
 
 interface Props {
     title: string;
     description: string;
 }
 const { title, description } = Astro.props;
+
+// 2. This new code automatically generates the breadcrumb links from the current URL
+const currentUrlPath = Astro.url.pathname;
+const pathParts = currentUrlPath.split('/').filter(part => part); // Remove empty parts
+
+let cumulativePath = '';
+const breadcrumbLinks = pathParts.map(part => {
+    cumulativePath += `/${part}`;
+    return {
+        href: cumulativePath,
+        // Capitalize the first letter and replace dashes for the label
+        label: part.charAt(0).toUpperCase() + part.slice(1).replace(/-/g, ' ')
+    };
+});
 ---
 
 <!DOCTYPE html>
@@ -97,6 +112,10 @@ const { title, description } = Astro.props;
     <TopNav />
 
     <main id="main-content" role="main">
+        <div class="breadcrumb-container" style="max-width: 1200px; margin: 0 auto; padding: 1.5rem 1.5rem 0 1.5rem;">
+            {/* 3. This line checks if the current page is NOT the homepage, and if so, renders the breadcrumb */}
+            {currentUrlPath !== '/' && <Breadcrumb links={breadcrumbLinks} />}
+        </div>
         <slot />
     </main>
 
