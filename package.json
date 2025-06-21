@@ -12,5 +12,8 @@
     "@tailwindcss/vite": "^4.1.10",
     "astro": "^5.10.0",
     "tailwindcss": "^4.1.10"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21"
   }
 }
